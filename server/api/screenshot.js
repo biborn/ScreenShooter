@@ -51,7 +51,7 @@ router.get('/', (req, res) => {
                         if (e) res.send(e)
                         else if (doc) res.send({
                             name:`${name}-${device}.png`,
-                            link:`http://${process.env.server || 'localhost:3000'}/getscreenshot/${name}-${device}-${time}.png`
+                            link:`https://screenshooterapi.herokuapp.com/getscreenshot/${name}-${device}-${time}.png`
                         })
                     })
                 }
