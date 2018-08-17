@@ -24,7 +24,7 @@ class Index extends Component {
         console.log('screenshot')
         this.setState({loading:true}, () => {
             console.log('process.env.server', process.env.server)
-            axios.get(`http://localhost:3000/screenshot?url=${url}&device=${device}`)
+            axios.get(`https://screenshooterapi.herokuapp.com/screenshot?url=${url}&device=${device}`)
             .then((res)=> {
                 console.log(res.data)
                 this.setState({[device]:res.data.link}, () => {
