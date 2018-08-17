@@ -14,7 +14,7 @@ module.exports = async ({
 
   function timeoutHandler(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
-  };
+  }; //
 
   await mkdir(cwd)
   await (async() => {
