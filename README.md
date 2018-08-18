@@ -1,7 +1,8 @@
 ## ScreenShooter - <h3 className='title align-center'>RESTful api to take a screenshot of any site <span role="img" aria-label="camera">📸</span></h3>
 
-# to use
-it can get any simplpler then that 
+# to use 
+it can's get any simpler then that 
+
 `curl https://screenshooterapi.herokuapp.com/screenshot?url=github.com&device=desktop`
 
 `url` - the url of the site you want to capture
