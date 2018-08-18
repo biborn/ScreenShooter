@@ -73,9 +73,8 @@ class Index extends Component {
                             {this.state.showImage ? <img className='dsk-img' src={this.state.desktop}/> : null}
                             {this.state.showImage ? <img className='phone-img' src={this.state.phone}/> : null}
 
-                        </div> : <p className='text-center response-text'>one moment please<span role="img" aria-label="thinking"> 💅</span>...</p>
+                        </div> : <p className='text-center'>one moment please<span role="img" aria-label="thinking"> 💅</span>...</p>
                     }
-                    <br/>
                     {
                         !this.state.loading ? 
                             <div>
@@ -84,7 +83,7 @@ class Index extends Component {
                                     <div className='text-center'>
                                         <a target='_blank' className='block' href={this.state.desktop}>{this.state.desktop}</a>
                                         <a target='_blank' className='block' href={this.state.phone}>{this.state.phone}</a>
-                                    </div>  : <p className='text-center  response-text'>Sorry! can't find it<span role="img" aria-label="thinking"> 🤷 </span></p>
+                                    </div>  : <p className='text-center '>Sorry! can't find it<span role="img" aria-label="thinking"> 🤷 </span></p>
                             }
                             </div> : null
                     }
