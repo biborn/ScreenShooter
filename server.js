@@ -58,7 +58,7 @@ app.prepare()
     server.use(passport.initialize());
     server.use(passport.session());
     server.use(cors())
-    // server.use(limiter)
+    server.use(limiter)
 
     // passport initialize
     const {User} = require('./db/models/UserSchema.js');
