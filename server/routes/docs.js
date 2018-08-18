@@ -8,9 +8,9 @@ const router = express.Router()
 
 app.prepare()
     .then(() => {
-        router.get('/:id', (req, res) => {
-            const actualPage = '/post' // the file inside /pages directory which you want to render
-            const queryParams = { id: req.params.id } // the param from the url
+        router.get('/', (req, res) => {
+            const actualPage = '/docs' // the file inside /pages directory which you want to render
+            const queryParams = {} // the param from the url
             app.render(req, res, actualPage, queryParams) // rendering call 
         })
 })

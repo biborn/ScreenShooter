@@ -1,9 +1,9 @@
 import React , { Component } from 'react'
-
 import Layout from '../components/Layout.js'
 import Link from 'next/link'
-import axios from 'axios'
 
+import axios from 'axios'
+import config from '../server/config.js'
 
 class Index extends Component {
 
@@ -23,8 +23,7 @@ class Index extends Component {
     takeScreenShot = (url, device) => {
         console.log('screenshot')
         this.setState({loading:true}, () => {
-            console.log('process.env.server', process.env.server)
-            axios.get(`https://screenshooterapi.herokuapp.com/screenshot?url=${url}&device=${device}`)
+            axios.get(`${config.server}/screenshot?url=${url}&device=${device}`)
             .then((res)=> {
                 console.log(res.data)
                 this.setState({[device]:res.data.link}, () => {
@@ -47,79 +46,15 @@ class Index extends Component {
     render() {
         return(
             <Layout>
+                <div className='text-center'>
+                    <h3 className='title align-center'>RESTful api to take a screenshot of any site <span role="img" aria-label="camera">📸</span></h3>
+                </div>
                 <div className='align-center'>
-                    <div>
-                        <p>
-                            the API works by sending <code className='code'>GET</code> request to the server with <code>device</code> and <code>url</code> as query parameter.
-                        </p>
-
-                        <code className='code code-curl'>
-                            curl https://screenshooterapi.herokuapp.com/screenshot?url=github.com&device=desktop
-                        </code>
-                        <br/>
-                        <br/>
-                        <p>
-                            in response you will get a link to your screenshot and you'll be able to access the image in any time
-                        </p>
-                    </div>
-
-
-                    <div className='response'>
-      
-                        <code>
-                            &#123; 
-                        </code>
-                        <br/>
-                        <code>
-                            &emsp; &emsp; link:"https://screenshooterapi.herokuapp.com/getscreenshot/github-phone-1534523667970.png",
-                        </code>
-                        <br/>
-                        <code>
-                            &emsp; &emsp; name:"github-phone-1534523667970.png"                
-                        </code>
-                        <br/>
-                        <code>
-                            &#125; 
-                        </code> 
-                
-                    </div>
-
-                    <br/>
-
-    
-                    <table className="table table-striped">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">description</th>
-                                <th scope="col">options</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row"><code>endpoint</code></th>
-                                <td><code>https://screenshooterapi.herokuapp.com/screenshot?</code></td>
-                                <td className='text-center'></td>
-                            </tr>
-                            <tr>
-                                <th scope="row"><code>url</code></th>
-                                <td>the url of the site you want to take a screenshot of</td>
-                                <td>any legal url</td>
-                            </tr>
-                            <tr>
-                                <th scope="row"><code>device</code></th>
-                                <td>the ratio of the screenshot</td>
-                                <td><code>phone</code> / <code>desktop</code></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div className='flex-container center'>
+                    <div className='flex-container center test-it'>
                         <input onChange={this.handleInput} type='text' name='urlInput' className='url-input' placeholder='enter url'/>
                         <br/>
                         <button onClick={() => this.capture(this.state.urlInput)}>test it!!</button>
                         <br/>
-
-                        {style}
                     </div>
                     <br/>
                     {
@@ -127,10 +62,20 @@ class Index extends Component {
                         <div className='flex-container center'>
                             {this.state.showImage ? <img className='dsk-img' src={this.state.desktop}/> : null}
                             {this.state.showImage ? <img className='phone-img' src={this.state.phone}/> : null}
-                        </div> : <p className='text-center'>one moment please(:...</p>
+
+                        </div> : <p className='text-center'>one moment please<span role="img" aria-label="thinking"> 💅</span>...</p>
+                    }
+                    <br/>
+                    {
+                        !this.state.loading ? 
+                        <div className='text-center'>
+                            <a target='_blank' className='block' href={this.state.desktop}>{this.state.desktop}</a>
+                            <a target='_blank' className='block' href={this.state.phone}>{this.state.phone}</a>
+                        </div> : null
                     }
 
                 </div>
+                {style}
             </Layout>
         )
     }
@@ -143,31 +88,22 @@ Index.getInitialProps = async () => { // getInitialProps is a Next method to get
 const style = (
     <style jsx="true">
         {`
-        .code-curl {
-            margin:5px;
-            padding:10px;
-        }
-        .response {
-            background-color:#f5f5f5;
-            border-radius:10px;
-            padding:10px;
-            margin:10px;
-            width:100%;
-        }
-
-            .code { 
-                background: #f5f5f5; 
-                border-radius:10px;
-
-            }
-            pre {
-                white-space: pre-wrap;
-                background: hsl(30,80%,90%);
-            }
             .align-center {
                 margin-left:auto;
                 margin-right:auto;
+                
             }
+
+            .block {
+                display:block;
+            }
+
+            .title {
+                margin-bottom:5rem;
+                margin-top:0.5rem;
+            }
+
+
             .flex-container {
                 padding: 0;
                 margin: 0;

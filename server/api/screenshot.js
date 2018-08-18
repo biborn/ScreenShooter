@@ -5,7 +5,7 @@ const mongoose = require('../../db/mongoose')
 const Binary = require('mongodb').Binary;
 const {File} = require('../../db/models/File.js')
 const Screenshot = require('../../Helpers/takeScreenshot')
-
+const config = require('../../server/config.js')
 
 router.get('/', (req, res) => {
 
@@ -51,7 +51,7 @@ router.get('/', (req, res) => {
                         if (e) res.send(e)
                         else if (doc) res.send({
                             name:`${name}-${device}.png`,
-                            link:`https://screenshooterapi.herokuapp.com/getscreenshot/${name}-${device}-${time}.png`
+                            link:`${config.server}/getscreenshot/${name}-${device}-${time}.png`
                         })
                     })
                 }

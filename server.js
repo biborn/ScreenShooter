@@ -31,6 +31,7 @@ const handle = app.getRequestHandler();
 
 // routes
 const index = require('./server/routes/index')
+const docs = require('./server/routes/docs')
 
 
 // api
@@ -57,7 +58,7 @@ app.prepare()
     server.use(passport.initialize());
     server.use(passport.session());
     server.use(cors())
-    server.use(limiter)
+    // server.use(limiter)
 
     // passport initialize
     const {User} = require('./db/models/UserSchema.js');
@@ -68,7 +69,7 @@ app.prepare()
 
     // pages
     server.use('/', index)    
-    // server.use('/p', p)
+    server.use('/dics', docs)
 
     // api
     server.use('/screenshot', screenshot)
