@@ -26,12 +26,22 @@ class Index extends Component {
             axios.get(`${config.server}/screenshot?url=${url}&device=${device}`)
             .then((res)=> {
                 console.log(res.data)
-                this.setState({[device]:res.data.link}, () => {
-                    this.setState({
-                        showImage:true,
-                        loading:false
+                if (res.data != 'no such page') {
+                    this.setState({[device]:res.data.link}, () => {
+                        this.setState({
+                            showImage:true,
+                            loading:false,
+                            noPage:false,
+                        })
                     })
-                })
+                } else {
+                    console.log(res.data)
+                    this.setState({
+                        noPage:true,
+                        loading:false,
+                        showImage:false,
+                    })
+                }
             })
             .catch(e => console.log(e))
         })
@@ -63,15 +73,20 @@ class Index extends Component {
                             {this.state.showImage ? <img className='dsk-img' src={this.state.desktop}/> : null}
                             {this.state.showImage ? <img className='phone-img' src={this.state.phone}/> : null}
 
-                        </div> : <p className='text-center'>one moment please<span role="img" aria-label="thinking"> 💅</span>...</p>
+                        </div> : <p className='text-center response-text'>one moment please<span role="img" aria-label="thinking"> 💅</span>...</p>
                     }
                     <br/>
                     {
                         !this.state.loading ? 
-                        <div className='text-center'>
-                            <a target='_blank' className='block' href={this.state.desktop}>{this.state.desktop}</a>
-                            <a target='_blank' className='block' href={this.state.phone}>{this.state.phone}</a>
-                        </div> : null
+                            <div>
+                            {
+                                !this.state.noPage ? 
+                                    <div className='text-center'>
+                                        <a target='_blank' className='block' href={this.state.desktop}>{this.state.desktop}</a>
+                                        <a target='_blank' className='block' href={this.state.phone}>{this.state.phone}</a>
+                                    </div>  : <p className='text-center  response-text'>Sorry! can't find it<span role="img" aria-label="thinking"> 🤷 </span></p>
+                            }
+                            </div> : null
                     }
 
                 </div>
@@ -92,6 +107,15 @@ const style = (
                 margin-left:auto;
                 margin-right:auto;
                 
+            }
+
+            .response-text {
+                position: absolute;
+                margin-left: auto;
+                margin-right: auto;
+                left: 0;
+                right: 0;
+                top:30%;
             }
 
             .block {

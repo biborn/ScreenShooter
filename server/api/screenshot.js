@@ -32,31 +32,38 @@ router.get('/', (req, res) => {
         height:height
     })
         .then(img => {
-
-            let nameArr = url.split('.')
-            console.log(nameArr)
-            let name = nameArr[0]
-            console.log(name)
-
-            File.findOne({name:`${name}-${device}`}, (e, fileFounded) => {
-                if (e) {res.send(e)}
-                if (fileFounded) {res.send(fileFounded)}
-                else {
-                    let time = new Date().getTime()
-                    let newImage = new File({
-                        name:`${name}-${device}-${time}.png`,
-                        file: Binary(img), // creating and saving the image as binary buffer
-                    })
-                    newImage.save((e, doc) => {
-                        if (e) res.send(e)
-                        else if (doc) res.send({
-                            name:`${name}-${device}.png`,
-                            link:`${config.server}/getscreenshot/${name}-${device}-${time}.png`
+            if (img != 'no such page') {
+                console.log('this is img', img)
+                let nameArr = url.split('.')
+                console.log(nameArr)
+                let name = nameArr[0]
+                console.log(name)
+    
+                File.findOne({name:`${name}-${device}`}, (e, fileFounded) => {
+                    if (e) {res.send(e)}
+                    if (fileFounded) {res.send(fileFounded)}
+                    else {
+                        let time = new Date().getTime()
+                        let newImage = new File({
+                            name:`${name}-${device}-${time}.png`,
+                            file: Binary(img), // creating and saving the image as binary buffer
                         })
-                    })
-                }
-            })
+                        newImage.save((e, doc) => {
+                            if (e) res.send(e)
+                            else if (doc) res.send({
+                                name:`${name}-${device}.png`,
+                                link:`${config.server}/getscreenshot/${name}-${device}-${time}.png`
+                            })
+                        })
+                    }
+                })
+            } else {
+                console.log('err fetching image')
+                res.send('no such page')
+            }
+
         })
+
 })
 
 module.exports = router
