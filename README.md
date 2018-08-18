@@ -1,4 +1,4 @@
-## ScreenShooter - <h3 className='title align-center'>RESTful api to take a screenshot of any site <span role="img" aria-label="camera">📸</span></h3>
+## ScreenShooter <span role="img" aria-label="camera">📸</span> <h3 className='title align-center'>RESTful api to take a screenshot of any site</h3>
 
 # to use 
 it can's get any simpler then that 
