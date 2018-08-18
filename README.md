@@ -3,7 +3,7 @@
 # to use 
 it can's get any simpler then that 
 
-`curl https://screenshooterapi.herokuapp.com/screenshot?url=github.com&device=desktop`
+`<code>curl https://screenshooterapi.herokuapp.com/screenshot?url=github.com&device=desktop</code>`
 
 `url` - the url of the site you want to capture
 
