@@ -146,12 +146,14 @@ const style = (
                 width:auto;
                 height:200px;
                 margin-right:0.5rem
+                margin-bottom:1rem;
             }
 
             .phone-img {
                 width:auto;
                 height:200px;
                 margin-left:0.5rem
+                margin-bottom:1rem;
             }
         `}
     </style>
