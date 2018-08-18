@@ -2,7 +2,7 @@
 
 # to use
 it can get any simplpler then that 
-```sh curl https://screenshooterapi.herokuapp.com/screenshot?url=github.com&device=desktop```
+`curl https://screenshooterapi.herokuapp.com/screenshot?url=github.com&device=desktop`
 
 `url` - the url of the site you want to capture
 `device` - the ratio of the image you want. (`desktop` / `phone`)
@@ -10,7 +10,7 @@ it can get any simplpler then that
 # open source
 the library is completely open sourced 
 **to use it you must have Mongodb up and running** 
-* clone the library `sh git clone https://github.com/obiwankenoobi/ScreenShooter.git`
+* clone the library `git clone https://github.com/obiwankenoobi/ScreenShooter.git`
 * in [server/config](./server/config.js) change `server` property to `http://localhost:3000`
 * `npm run dev`
 
