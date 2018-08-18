@@ -13,3 +13,5 @@ the library is completely open sourced
 * clone the library `sh git clone https://github.com/obiwankenoobi/ScreenShooter.git`
 * in [server/config](./server/config.js) change `server` property to `http://localhost:3000`
 * `npm run dev`
+
+# [try it!](https://screenshooterapi.herokuapp.com/)
