@@ -6,6 +6,7 @@ it can's get any simpler then that
 `curl https://screenshooterapi.herokuapp.com/screenshot?url=github.com&device=desktop`
 
 `url` - the url of the site you want to capture
+
 `device` - the ratio of the image you want. (`desktop` / `phone`)
 
 # open source
